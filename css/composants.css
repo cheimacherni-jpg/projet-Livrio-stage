@@ -1,0 +1,591 @@
+/*//// COMPOSANTS VISUELS///////*
+
+///// template composant CARTE LIVRE CSS  ///////*/
+.couverture {
+  width: 280px;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+.div-couverture-colomn {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  padding: 40px;
+}
+
+.div-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-items: center;
+  gap: 40px;
+}
+
+.infos-row {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+p.summary {
+  background-color: #FFFCF7;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.div-infos-colomn {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+img.logo-nav {
+  width: 150px;
+}
+
+
+/*//////// CHAMP DE SAISIE ///////// */
+.search-bar {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar svg.search-icon {
+  position: absolute;
+  left: 13px;
+  color: var(--text-muted);
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.search-bar input {
+  width: 100%;
+  font-family: var(--font);
+  font-size: 14.5px;
+  color: var(--text);
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  padding: 10px 40px 10px 38px;
+  outline: none;
+  transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+}
+
+.search-bar input::placeholder {
+  color: var(--placeholder);
+}
+
+.search-bar input:hover:not(:focus) {
+  border-color: #B4BAC2;
+}
+
+.search-bar input:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--ring-focus);
+  background: var(--bg);
+  background-color: #ffffffab;
+}
+
+input[type="text"] {
+  background-color: #ffffffab;
+  border-radius: 5px;
+}
+
+.search-bar .clear-btn {
+  position: absolute;
+  right: 8px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 50%;
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0;
+}
+
+.search-bar .clear-btn:hover {
+  background: var(--card);
+  color: var(--text);
+}
+
+.search-bar input:not(:placeholder-shown)~.clear-btn {
+  display: flex;
+}
+
+
+
+
+/*//////// COMPOSANT GRILLE CARTE  ///////// */
+
+
+.div-couverture-colomn-index {
+  text-align: left;
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  grid-template-rows: 30px;
+  grid-template-areas:
+    "photo pseudo"
+    "photo bio"
+    "photo bouton";
+  column-gap: 30px;
+  row-gap: 4px;
+  align-items: start;
+  background-color: #fdfbf7;
+  border-radius: 5px;
+  padding: 25px 15px
+}
+
+.grille-flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 35px;
+  width: fit-content;
+  margin: auto;
+  align-items: center;
+}
+
+
+/*//// FORMULAIRE DE NOTE D'UN LIVRE  //////*/
+fieldset {
+  border: 1px solid var(--bordure);
+  border-radius: 5px;
+  padding: 1rem 1.5rem;
+}
+
+legend {
+  font-weight: bold;
+  padding: 0 0.5rem;
+}
+
+.note-etoile {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.note-etoile input {
+  position: absolute;
+  opacity: 0;
+  animation: star-pop 120ms ease-out;
+}
+
+.note-etoile label {
+  font-size: 1.8rem;
+  color: #ccc;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  width: 0.5em;
+  height: 1.5em;
+  overflow: hidden;
+  animation: star-pop 120ms ease-out;
+}
+
+.note-etoile input:checked~label,
+.note-etoile label:hover,
+.note-etoile label:hover~label {
+  color: #f5a623;
+  animation: star-pop 120ms ease-out;
+}
+
+.note-etoile input:focus-visible+label {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  animation: star-pop 120ms ease-out;
+}
+
+.note-etoile label::before {
+  content: "★";
+  position: absolute;
+  top: 0;
+  width: 1em;
+  animation: star-pop 120ms ease-out;
+}
+
+.note-etoile label.demi-gauche::before {
+  left: 0;
+  animation: star-pop 120ms ease-out;
+}
+
+.note-etoile label.demi-droite::before {
+  left: -0.5em;
+  animation: star-pop 120ms ease-out;
+}
+
+.champ-saisie textarea {
+  field-sizing: content;
+  min-height: 80px;
+  max-height: 140vh;
+  width: 300px;
+}
+
+
+/*//// POP UP FORMULAIRE  //////*/
+/* Fond sombre qui recouvre toute la page, caché par défaut */
+.avis-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+
+  /* caché par défaut */
+  display: none;
+
+  /* pour centrer la fenêtre du formulaire */
+  align-items: center;
+  justify-content: center;
+}
+
+/* afficher la pop-up */
+.avis-modal-overlay.visible {
+  display: flex;
+}
+
+/* La petite fenêtre blanche qui contient le formulaire */
+.avis-modal-overlay .div-formulaire-avis {
+  background: white;
+  border-radius: 5px;
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 400px;
+}
+
+
+/* LISTE DEROULANTE */
+.shelf {
+  position: relative;
+  display: inline-block;
+}
+
+
+/* Bouton (libellé + séparateur + flèche) */
+.shelf__trigger {
+  display: inline-flex;
+  align-items: stretch;
+  padding: 0;
+  border: 1px solid var(--secondaire-bouton);
+  border-radius: 5px;
+  background: var(--bouton);
+  color: var(--card);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.shelf__trigger:hover,
+.shelf__trigger[aria-expanded="true"] {
+  background: var(--secondaire-bouton);
+}
+
+.shelf__trigger:focus-visible,
+.shelf__item:focus-visible {
+  outline: 2px solid var(--bouton);
+  outline-offset: 2px;
+}
+
+.shelf__label {
+  padding: 0.6rem 1.1rem;
+  white-space: nowrap;
+}
+
+.shelf__arrow {
+  display: grid;
+  place-items: center;
+  padding: 0 0.7rem;
+  border-left: 1px solid var(--secondaire-bouton);
+}
+
+.shelf__arrow svg {
+  width: 12px;
+  height: 12px;
+  transition: transform 0.15s ease;
+}
+
+.shelf__trigger[aria-expanded="true"] .shelf__arrow svg {
+  transform: rotate(180deg);
+}
+
+
+/* Menu */
+.shelf__menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 10;
+  min-width: 100%;
+  width: max-content;
+  margin: 0;
+  padding: 0.35rem 0;
+  list-style: none;
+  background: var(--card);
+  border: 1px solid var(--bordure);
+  border-radius: 5px;
+  box-shadow: 0 6px 18px rgba(69, 22, 30, 0.12);
+}
+
+.shelf__menu[hidden] {
+  display: none;
+}
+
+.shelf__item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1rem;
+  color: var(--text);
+  font-size: 0.92rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.shelf__item:hover,
+.shelf__item:focus {
+  background: var(--primaire);
+  outline: none;
+}
+
+.shelf__item:focus-visible {
+  outline: 2px solid var(--bouton);
+  outline-offset: -2px;
+}
+
+
+/* Coche sur l'élément choisi */
+.shelf__check {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  color: var(--bouton);
+  visibility: hidden;
+}
+
+.shelf__item[aria-checked="true"] .shelf__check {
+  visibility: visible;
+}
+
+.shelf__item[aria-checked="true"] {
+  font-weight: 600;
+}
+
+.shelf__separator {
+  height: 1px;
+  margin: 0.35rem 0;
+  background: var(--bordure);
+}
+
+.shelf__item--action {
+  color: var(--bouton);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .shelf__trigger,
+  .shelf__arrow svg {
+    transition: none;
+  }
+}
+
+
+
+
+
+
+/* COMPOSANT AVIS LIVRE.HTML CSS////*/
+article {
+  width: 150px;
+  text-align: center;
+  background-color: var(--bouton);
+  padding: 20px;
+  border: 1px solid var(--bordure);
+  display: flex;
+  flex-direction: column;
+  color: var(--primaire);
+  gap: 3px;
+  border-radius: 5px;
+  max-width: 400px;
+  animation: card-appear 250ms ease-out;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+
+}
+
+time {
+  text-align: right;
+  font-size: 0.85em;
+  color: #777;
+  margin: 0;
+}
+
+.badge-ma-note {
+  position: relative;
+  top: 6px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+}
+
+.icone-etoile {
+  width: 20px;
+  height: 20px;
+}
+
+.etoiles-avis {
+  display: flex;
+  gap: 2px;
+}
+
+.ligne-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.etoiles-moyenne {
+  display: flex;
+  gap: 2px;
+}
+
+.moyenne-avis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+
+/* AVIS VIDE */
+.etat-vide-avis {
+  background: var(--card);
+  border: 1px solid var(--bordure);
+  border-radius: 5px;
+  padding: 40px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.etat-vide-avis p:first-of-type {
+  font-weight: 500;
+  color: var(--text);
+  margin: 0;
+}
+
+.etat-vide-avis p:last-of-type {
+  color: var(--secondaire-text);
+  margin: 0;
+}
+
+
+/* ERREUR AVIS */
+.champ-erreur {
+  border-color: var(--erreur) !important;
+}
+
+
+/* MESSAGES ERREURS*/
+.message {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid transparent;
+  border-left-width: 4px;
+  border-radius: 5px;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.message__icone {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.message__texte {
+  margin: 0;
+}
+
+.message__prefixe {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-right: 0.35em;
+}
+
+
+/* --- Variante information --- */
+.message--info {
+  background-color: #e8f0fe;
+  border-color: #17395e;
+  color: #17395e;
+}
+
+.message--info .message__icone {
+  background-color: #17395e;
+  color: #ffffff;
+}
+
+.message--info .message__icone::before {
+  content: "i";
+  font-style: italic;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+
+/* --- Variante succès --- */
+.message--succes {
+  background-color: #e6f4ea;
+  border-color: #1e4620;
+  color: #1e4620;
+}
+
+.message--succes .message__icone {
+  background-color: #1e4620;
+  color: #ffffff;
+}
+
+.message--succes .message__icone::before {
+  content: "\2713";
+}
+
+
+/* --- Variante erreur --- */
+.message--erreur {
+  background-color: #fdecea;
+  border-color: #611a15;
+  color: #611a15;
+}
+
+.message--erreur .message__icone {
+  background-color: #611a15;
+  color: #ffffff;
+}
+
+.message--erreur .message__icone::before {
+  content: "\26A0";
+}

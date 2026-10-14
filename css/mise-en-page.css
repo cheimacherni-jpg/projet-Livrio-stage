@@ -1,0 +1,769 @@
+/*/////STYLE COMMUN A TOUTES LES PAGES //*/
+
+
+/*//// STYLE HEADER /////*/
+header {
+    background-color: var(--bouton);
+    color: var(--primaire);
+}
+
+
+/*//// STYLE NAV /////*/
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.div-lien-nav {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    padding: 10px 15px;
+}
+
+.lien {
+    width: 35px;
+}
+
+
+/*///// STYLE FOOTER //////*/
+
+/* Le fond du footer */
+footer {
+    background-color: var(--bouton);
+    color: var(--primaire);
+    margin-top: 40px;
+}
+
+/* Les titres "CONTACTEZ-NOUS" et "ABONNEZ-VOUS" */
+footer h4 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+/* Le contenu : une colonne à gauche, une colonne à droite.
+   (la classe .container garde le footer à 1200px max et centré) */
+.div-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 80px 20px;
+}
+
+/* Colonne de gauche */
+.contact-us {
+    margin-bottom: 20px;
+}
+
+.lien-reseaux-sociaux-row {
+    display: flex;
+    gap: 20px;
+}
+
+footer .icon {
+    width: 48px;
+}
+
+/* Colonne de droite */
+.subscribe {
+    width: 450px;
+}
+
+.subscribe form {
+    align-items: flex-start;
+}
+
+.subscribe input {
+    width: 100%;
+    padding: 12px;
+}
+
+.subscribe button {
+    background-color: var(--primaire);
+    color: var(--bouton);
+}
+
+/* La bande du bas */
+.div-signature {
+    background-color: var(--card);
+    color: var(--secondaire-text);
+    text-align: center;
+    padding: 18px;
+}
+
+/* Sur téléphone : les deux colonnes passent l'une sous l'autre */
+@media (max-width: 700px) {
+    .div-footer {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .subscribe {
+        width: 100%;
+    }
+}
+
+
+/*---- STYLE BOUTON ---*/
+button {
+    background-color: var(--bouton);
+    color: var(--primaire);
+    padding: 7px;
+    border-color: var(--secondaire-bouton);
+    border-style: solid;
+    border-radius: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+    text-align: center;
+    border-color: var(--bordure);
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: var(--primaire);
+    color: var(--bouton);
+    border-color: var(--bouton);
+}
+
+button:active {
+    background-color: var(--primaire);
+    color: var(--bouton);
+    border-color: var(--bouton);
+    animation: button-press 120ms ease-out;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+    transition: box-shadow 120ms ease-out;
+}
+
+button:disabled {
+    background-color: rgba(128, 128, 128, 0.709);
+    color: black;
+    border-color: black;
+    cursor: not-allowed;
+}
+
+.icon {
+    max-width: 100%;
+    width: 75px;
+    height: auto;
+}
+
+
+
+
+/*// ------STYLE CSS PAGE INDEX--------///*/
+
+
+/*///// CSS FIL D'ACTUALITE //////*/
+.fil-activite {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    justify-content: space-between;
+}
+
+.div-fil-dactu {
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #eae3d2a1;
+    padding: 9px;
+    padding-left: 18px;
+    padding-right: 18px;
+    border-radius: 5px;
+}
+
+.fil-dactu {
+    background-color: var(--bouton);
+    color: var(--primaire);
+    height: fit-content;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border-radius: 5px;
+}
+
+h2.titre-fil-dactu {
+    text-align: center;
+}
+
+.div-recherche-livres {
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+
+.carte-avis {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    align-items: flex-start;
+    gap: 12px;
+    background-color: #fdfbf7;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    animation: card-appear 250ms ease-out;
+}
+
+.carte-photo-profil {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.carte-pseudo {
+    font-weight: bold;
+    color: #6b2a38;
+    margin: 0 0 5px 0;
+}
+
+.carte-date {
+    font-size: 0.85em;
+    color: #777;
+    margin: 0 0 10px 0;
+}
+
+.carte-commentaire {
+    margin: 0;
+    color: var(--secondaire-text);
+}
+
+.carte-titre-livre {
+    font-weight: bold;
+    color: var(--text);
+    margin: 0 0 4px 0;
+}
+
+
+/*//// CSS RECHERCHER LIVRES /////*/
+
+select#select-genre {
+    background-color: var(--bouton);
+    border-color: var(--bordure);
+    padding: 5px;
+    color: var(--primaire);
+    border-radius: 5px;
+}
+
+select#select-tri {
+    background-color: var(--bouton);
+    border-color: var(--bordure);
+    padding: 5px;
+    color: var(--primaire);
+    border-radius: 5px;
+}
+
+.div-filtrage {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/*-- STYLE FORMULAIRE AVIS ----*/
+li.champ-saisie {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.div-button-form {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    gap: 12px;
+    animation: button-press 120ms ease-out;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+    transition: box-shadow 120ms ease-out;
+}
+
+.div-formulaire-avis {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background-color: var(--card);
+    padding: 40px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+
+
+
+/*///-----STYLE CSS PAGE PROFIL-----////*/
+
+/* Conteneur de la page : les sections s'empilent */
+.container-profil {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+
+/* 1. BANDEAU : photo qui dépasse en bas à gauche, pseudo à droite */
+.div-photo {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-height: 200px;
+    padding: 0 24px 24px 302px;
+    margin-bottom: 25px;
+    background-color: var(--bouton);
+    color: var(--primaire);
+    border-radius: 5px;
+}
+
+.div-photo.squelette-colonne {
+    flex-direction: row;
+    align-items: center;
+    padding: 24px;
+}
+
+img.photo-profil {
+    position: absolute;
+    left: 137px;
+    bottom: -22px;
+    width: 133px;
+    height: 133px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: var(--secondaire-bouton);
+}
+
+h1.pseudo {
+    padding-left: 0;
+}
+
+
+/* 2. BIO (gauche) + STATS (droite) */
+.div-bio-stat {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr);
+    gap: 60px;
+    align-items: start;
+}
+
+p.biographie {
+    background-color: var(--card);
+    width: 100%;
+    min-height: 150px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.div-bio-stat .div-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    justify-content: stretch;
+    justify-items: stretch;
+}
+
+.div-bio-stat article {
+    width: 100%;
+    max-width: none;
+}
+
+h3.stat-lu,
+h3.stat-en-cours,
+h3.stat-pile-a-lire {
+    font-size: 50px;
+}
+
+
+/* 3. ACTIVITES (gauche) + AMIES (droite) */
+.container-fil-activite {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+    justify-content: stretch;
+    justify-items: stretch;
+}
+
+.div-mes-activites {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.liste-avis {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.div-mes-activites .carte-avis {
+    width: 100%;
+    max-width: none;
+}
+
+img.couverture-card-profil {
+    width: 140px;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+}
+
+.ligne-note-date {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    font-size: 0.75em;
+    color: #777;
+}
+
+.note {
+    background-color: #6b2a38;
+    color: #fff;
+    border-radius: 5px;
+    padding: 2px 10px;
+    font-size: 0.95em;
+    white-space: nowrap;
+}
+
+.carte-avis>div {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+
+.carte-avis>div>p:first-child {
+    margin: 0 0 6px 0;
+    font-size: 16px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: var(--text);
+}
+
+.div-amis {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.div-mes-amis {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+/* Les deux listes d'amies : cartes empilées en colonne */
+div#liste-amis-profil,
+div#liste-recco-amis-profil {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    width: 100%;
+    margin: 0;
+    padding: 15px;
+    color: var(--primaire);
+    border-radius: 5px;
+}
+
+div#liste-amis-profil {
+    background-color: var(--bouton);
+}
+
+div#liste-recco-amis-profil {
+    background-color: var(--secondaire-bouton);
+}
+
+/* Carte d'une amie */
+.div-couverture-colomn-index>a {
+    grid-area: photo;
+}
+
+img.img-amis {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+.div-couverture-colomn-index h5 {
+    grid-area: pseudo;
+    color: var(--text);
+    margin: 0;
+    font-size: 1em;
+}
+
+.div-couverture-colomn-index p {
+    grid-area: bio;
+    margin: 0;
+    font-size: 0.85em;
+    color: #555;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.bouton-retirer,
+.bouton-ajouter {
+    grid-area: bouton;
+    justify-self: start;
+    margin-top: 4px;
+}
+
+
+/* Mobile : tout passe en une colonne */
+@media (max-width: 800px) {
+    .div-photo {
+        padding-left: 136px;
+    }
+
+    img.photo-profil {
+        left: 24px;
+        width: 96px;
+        height: 96px;
+    }
+
+    .div-bio-stat,
+    .container-fil-activite {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 32px;
+    }
+}
+
+
+.div-couverture-colomn-index-livre {
+    display: flex;
+    column-gap: 25px;
+    row-gap: 15px;
+    align-items: center;
+    text-align: left;
+    border-radius: 5px;
+    padding: 15px 20px;
+    flex: 1 1 280px;
+    max-width: 380px;
+}
+
+.article-livre {
+    width: 100%;
+    background-color: var(--card);
+    padding: 20px;
+    border: 1px solid var(--bordure);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    border-radius: 5px;
+    animation: card-appear 250ms ease-out;
+    color: var(--text);
+}
+
+.article-livre h5 {
+    margin: 0;
+    line-height: 1.3em;
+    min-height: 2.6em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.article-livre p {
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.article-livre img {
+    width: 100%;
+    aspect-ratio: 140 / 190;
+    object-fit: cover;
+    display: block;
+    border-radius: 5px;
+}
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+@media (max-width: 768px) {
+
+    .div-row {
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
+
+/*//------STYLE CSS PAGE LIVRE------//*/
+
+.container-livre {
+    width: fit-content;
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+}
+
+div#contenu-fiche-livre {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.div-avis {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+article.article-avis {
+    width: 430px;
+    background-color: #fdfbf7;
+    border: 2px solid #6b2a38;
+    border-radius: 5px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+    text-align: left;
+}
+
+p.valeur-pseudo {
+    font-weight: bold;
+    color: #6b2a38;
+}
+
+.img-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.entete-avis {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+p.commentaire-avis-livre {
+    margin: 8px 0 8px 0;
+    line-height: 1.5;
+    color: var(--text);
+}
+
+@media (max-width: 480px) {
+
+    /* ===== HEADER ===== */
+    header {
+        width: 100%;
+    }
+
+    header nav {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 16px;
+    }
+
+    /* ===== CONTENEUR PRINCIPAL ===== */
+    main {
+        width: 100%;
+    }
+
+    .container-livre {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #contenu-fiche-livre {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    /* ===== COLONNE COUVERTURE ===== */
+    .div-row.fil-activite {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* ===== COLONNE INFOS ===== */
+    .div-infos-colomn {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 0 8px;
+    }
+
+    /* ===== TEXTES ===== */
+    .titre-livre {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .div-infos-colomn p {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+        width: 100%;
+        padding: 16px;
+    }
+}

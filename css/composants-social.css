@@ -1,0 +1,76 @@
+
+/*//// COMPOSANTS SOCIAL///////*/
+
+
+
+
+/*///  CARTE AVIS   ///*/
+
+.carte-avis {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    padding: 20px;
+    background: var(--card);
+    border: 1px solid var(--bordure);
+    border-radius: 5px;
+
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+ 
+
+
+/* --- CARTE AVIS UTILISATEUR COURANT (PROFIL.HTML) --- */
+
+.couverture-card-profil {
+    width: 60px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.carte-avis .ligne-note-date {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.carte-avis .note {
+    font-weight: bold;
+}
+
+
+/* --- LISTE AMIS (PROFIL.HTML) --- */
+.liste-amies-actuelles,
+.liste-amies-recommandees {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* --- BOUTON AJOUTER -RETIRER (PROFIL.HTML) --- */
+
+
+.bouton-retirer:active {
+    background-color: var(--primaire);
+    color: var(--bouton);
+    border-color: var(--bouton);
+    animation: button-press 200ms ease-out;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+    transition: box-shadow 200ms ease-out;
+}
+
+.bouton-ajouter:active {
+    background-color: var(--primaire);
+    color: var(--bouton);
+    border-color: var(--bouton);
+    animation: button-press 200ms ease-out;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+    transition: box-shadow 200ms ease-out;
+}

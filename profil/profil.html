@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil</title>
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/composants.css">
+    <link rel="stylesheet" href="../css/mise-en-page.css">
+    <link rel="stylesheet" href="../css/squelette.css">
+    <link rel="stylesheet" href="../css/animations.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="../index-accueil/index.html">
+                <img class="logo-nav div-lien-nav" src="../assets/livrio-logo.png" alt="logo-site">
+            </a>
+            <div class="div-lien-nav">
+                <a href="../index-accueil/index.html">
+                    <img class="lien" src="../assets/lens.svg" alt="icône-loupe">
+                </a>
+                <a href="../library/library.html">
+                    <img class="lien" src="../assets/library.svg" alt="icône-biblio">
+                </a>
+                <a href="../profil/profil.html">
+                    <img class="lien" src="../assets/profile.svg" alt="icône-profil">
+                </a>
+            </div>
+
+        </nav>
+    </header>
+    <main>
+        <div class="container-profil">
+
+            <!-- Squelette de chargement  -->
+            <div id="squelette-profil-entete">
+                <section>
+                    <div class="div-photo squelette-colonne" style="align-items:center;">
+                        <div class="squelette-bloc squelette-bloc--rond" style="width:120px;height:120px;"></div>
+                        <div class="squelette-bloc squelette-bloc--texte" style="width:180px;height:1.6em;"></div>
+                    </div>
+                </section>
+                <section class="div-row container fil-activite">
+                    <div class="squelette-colonne">
+                        <div class="squelette-bloc squelette-bloc--texte" style="width:120px;height:1.2em;"></div>
+                        <div class="squelette-bloc squelette-bloc--texte" style="width:95%;"></div>
+                        <div class="squelette-bloc squelette-bloc--texte" style="width:80%;"></div>
+                    </div>
+                    <div class="squelette-colonne">
+                        <div class="squelette-bloc squelette-bloc--texte" style="width:150px;height:1.2em;"></div>
+                        <div class="div-row" style="gap:20px;">
+                            <div class="squelette-colonne" style="align-items:center;">
+                                <div class="squelette-bloc squelette-bloc--texte" style="width:40px;height:1.5em;">
+                                </div>
+                                <div class="squelette-bloc squelette-bloc--texte" style="width:70px;"></div>
+                            </div>
+                            <div class="squelette-colonne" style="align-items:center;">
+                                <div class="squelette-bloc squelette-bloc--texte" style="width:40px;height:1.5em;">
+                                </div>
+                                <div class="squelette-bloc squelette-bloc--texte" style="width:70px;"></div>
+                            </div>
+                            <div class="squelette-colonne" style="align-items:center;">
+                                <div class="squelette-bloc squelette-bloc--texte" style="width:40px;height:1.5em;">
+                                </div>
+                                <div class="squelette-bloc squelette-bloc--texte" style="width:70px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <section>
+                <div id="contenu-profil-entete" hidden>
+                    <div class="div-photo">
+                        <img src="" alt="image-profil" class="photo-profil">
+                        <h1 class="pseudo"></h1>
+                    </div>
+                </div>
+            </section>
+
+
+            <section>
+                <div class="div-bio-stat">
+                    <div>
+                        <h2>Biographie</h2>
+                        <p class="biographie"></p>
+                    </div>
+                    <div>
+                        <h2>Ce mois-ci...</h2>
+                        <div class="div-row">
+                            <article>
+                                <h3 class="stat-lu"></h3>
+                                <p>livres lus</p>
+                            </article>
+                            <article>
+                                <h3 class="stat-en-cours"></h3>
+                                <p>livres en cours</p>
+                            </article>
+                            <article>
+                                <h3 class="stat-pile-a-lire"></h3>
+                                <p>livres à lire</p>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="div-row container-fil-activite">
+                <div class="div-mes-activites">
+                    <h2>Mes activités</h2>
+                    <div class="liste-avis">
+                        <article class="carte-avis">
+                            <div class="squelette-colonne" style="flex:1;">
+                                <div class="squelette-bloc squelette-bloc--texte" style="width:90%;"></div>
+                                <div class="squelette-bloc squelette-bloc--texte" style="width:60%;"></div>
+                            </div>
+                            <div class="squelette-bloc" style="width:60px;height:80px;"></div>
+                        </article>
+                        <article class="carte-avis">
+                            <div class="squelette-colonne" style="flex:1;">
+                                <div class="squelette-bloc squelette-bloc--texte" style="width:85%;"></div>
+                                <div class="squelette-bloc squelette-bloc--texte" style="width:50%;"></div>
+                            </div>
+                            <div class="squelette-bloc" style="width:60px;height:80px;"></div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="div-amis">
+                    <div class="div-mes-amis">
+                        <h2>Mes amies</h2>
+                        <div id="liste-amis-profil" class="grille-flex-wrap liste-amies-actuelles">
+                            <div class="div-couverture-colomn-index">
+                                <div class="squelette-bloc squelette-bloc--rond" style="width:80px;height:80px;"></div>
+                                <div class="squelette-bloc squelette-bloc--texte" style="width:80px;"></div>
+                            </div>
+                            <div class="div-couverture-colomn-index">
+                                <div class="squelette-bloc squelette-bloc--rond" style="width:80px;height:80px;"></div>
+                                <div class="squelette-bloc squelette-bloc--texte" style="width:80px;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="div-mes-amis">
+                        <h2>Profils recommandés</h2>
+                        <div id="liste-recco-amis-profil" class="grille-flex-wrap liste-amies-recommandees">
+                            <div class="div-couverture-colomn-index">
+                                <div class="squelette-bloc squelette-bloc--rond" style="width:80px;height:80px;">
+                                </div>
+                                <div class="squelette-bloc squelette-bloc--texte" style="width:80px;"></div>
+                            </div>
+                            <div class="div-couverture-colomn-index">
+                                <div class="squelette-bloc squelette-bloc--rond" style="width:80px;height:80px;">
+                                </div>
+                                <div class="squelette-bloc squelette-bloc--texte" style="width:80px;"></div>
+                            </div>
+                            <div class="div-couverture-colomn-index">
+                                <div class="squelette-bloc squelette-bloc--rond" style="width:80px;height:80px;">
+                                </div>
+                                <div class="squelette-bloc squelette-bloc--texte" style="width:80px;"></div>
+                            </div>
+                            <div class="div-couverture-colomn-index">
+                                <div class="squelette-bloc squelette-bloc--rond" style="width:80px;height:80px;">
+                                </div>
+                                <div class="squelette-bloc squelette-bloc--texte" style="width:80px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div> 
+    </main>
+
+    </main>
+    <footer>
+        <div class="div-footer container">
+            <div>
+                <div class="contact-us">
+                    <h4>CONTACTEZ-NOUS</h4>
+                    <p>livrio@gmail.com</p>
+                    <p>04 56 78 90 34</p>
+                </div>
+                <div class="logo-rs-colomn">
+                    <div class="lien-reseaux-sociaux-row">
+                        <a href=""><img class="icon" src="../assets/facebook.svg" alt="icône-facebook"></a>
+                        <a href=""><img class="icon" src="../assets/instagram.svg" alt="icône-instagram"></a>
+                        <a href=""><img class="icon" src="../assets/x.svg" alt="icône-x"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subscribe">
+                <h4>ABONNEZ-VOUS</h4>
+                <p>Recevez chaque moi la newsletter de Livrio</p>
+                <form action="#" method="post">
+                    <label for="email">Entrer votre adresse mail</label>
+                    <input type="text" id="email">
+                    <button type="submit">Envoyer</button>
+                </form>
+            </div>
+
+        </div>
+        <div class="div-signature">
+            <p>Stage - septembre 2026</p>
+        </div>
+    </footer>
+    <script src="../js/squelette.js"></script>
+    <script src="../js/donnees.js"></script>
+    <script src="../js/profil.js"></script>
+</body>
+
+</html>

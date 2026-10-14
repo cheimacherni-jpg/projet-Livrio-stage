@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche livre - Livrio</title>
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/composants.css">
+    <link rel="stylesheet" href="../css/mise-en-page.css">
+    <link rel="stylesheet" href="../css/squelette.css">
+    <link rel="stylesheet" href="../css/animations.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="../index-accueil/index.html">
+                <img class="logo-nav div-lien-nav" src="../assets/livrio-logo.png" alt="logo-site">
+            </a>
+            <div class="div-lien-nav">
+                <a href="../index-accueil/index.html">
+                    <img class="lien" src="../assets/lens.svg" alt="icône-loupe">
+                </a>
+                <a href="../library/library.html">
+                    <img class="lien" src="../assets/library.svg" alt="icône-biblio">
+                </a>
+                <a href="../profil/profil.html">
+                    <img class="lien" src="../assets/profile.svg" alt="icône-profil">
+                </a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="container-livre">
+
+            <div id="squelette-fiche-livre">
+                <div class="div-row fil-activite">
+                    <div class="div-couverture-colomn">
+                        <div class="squelette-bloc" style="width:280px;height:420px;"></div>
+                        <div class="squelette-bloc" style="width:110px;height:38px;border-radius:20px;"></div>
+                        <div class="squelette-bloc squelette-bloc--texte" style="width:150px;"></div>
+                    </div>
+                </div>
+                <div class="div-infos-colomn squelette-colonne">
+                    <div class="squelette-bloc squelette-bloc--texte" style="width:60%;height:1.6em;"></div>
+                    <div class="squelette-bloc squelette-bloc--texte" style="width:30%;height:1.2em;"></div>
+                    <div class="squelette-bloc squelette-bloc--texte" style="width:100%;"></div>
+                    <div class="squelette-bloc squelette-bloc--texte" style="width:100%;"></div>
+                    <div class="squelette-bloc squelette-bloc--texte" style="width:90%;"></div>
+                    <div class="squelette-bloc squelette-bloc--texte" style="width:30%;height:1.2em;"></div>
+                    <div class="squelette-bloc squelette-bloc--texte" style="width:40%;"></div>
+                    <div class="squelette-bloc squelette-bloc--texte" style="width:35%;"></div>
+                    <div class="squelette-bloc squelette-bloc--texte" style="width:25%;"></div>
+                    <div class="squelette-bloc squelette-bloc--texte" style="width:20%;"></div>
+                    <div class="squelette-bloc squelette-bloc--texte" style="width:35%;height:1.2em;"></div>
+                    <div class="squelette-ligne">
+                        <div class="squelette-bloc squelette-bloc--rond" style="width:50px;height:50px;flex-shrink:0;">
+                        </div>
+                        <div class="squelette-colonne" style="flex:1;">
+                            <div class="squelette-bloc squelette-bloc--texte" style="width:70%;"></div>
+                            <div class="squelette-bloc squelette-bloc--texte" style="width:90%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="contenu-fiche-livre" hidden>
+                <div class="div-row fil-activite">
+
+                    <div class="div-couverture-colomn">
+                        <img class="couverture card couvertureImg" src="" alt="couverture-livre">
+                        <div class="shelf" id="etagere">
+                            <button class="shelf__trigger" type="button" aria-haspopup="menu" aria-expanded="false"
+                                aria-controls="etagere-menu">
+                                <span class="shelf__label">À lire</span>
+                                <span class="shelf__arrow" aria-hidden="true">
+                                    <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M2 4.5 6 8.5l4-4" />
+                                    </svg>
+                                </span>
+                            </button>
+
+                            <ul class="shelf__menu" id="etagere-menu" role="menu" hidden>
+                                <li class="shelf__item" role="menuitemradio" aria-checked="true" tabindex="-1"
+                                    data-value="a-lire">
+                                    <svg class="shelf__check" viewBox="0 0 14 14" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <path d="m2.5 7.5 3 3 6-7" />
+                                    </svg>
+                                    À lire
+                                </li>
+                                <li class="shelf__item" role="menuitemradio" aria-checked="false" tabindex="-1"
+                                    data-value="en-cours">
+                                    <svg class="shelf__check" viewBox="0 0 14 14" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <path d="m2.5 7.5 3 3 6-7" />
+                                    </svg>
+                                    En cours de lecture
+                                </li>
+                                <li class="shelf__item" role="menuitemradio" aria-checked="false" tabindex="-1"
+                                    data-value="lu">
+                                    <svg class="shelf__check" viewBox="0 0 14 14" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <path d="m2.5 7.5 3 3 6-7" />
+                                    </svg>
+                                    Lu
+                                </li>
+                                <li class="shelf__item" role="menuitemradio" aria-checked="false" tabindex="-1"
+                                    data-value="abandonne">
+                                    <svg class="shelf__check" viewBox="0 0 14 14" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <path d="m2.5 7.5 3 3 6-7" />
+                                    </svg>
+                                    Abandonné
+                                </li>
+                            </ul>
+                        </div>
+
+                        <p aria-live="polite"></p>
+
+                        <div class="moyenne-avis">
+                            <div class="ligne-note">
+                                <div class="etoiles-moyenne"></div>
+                                <span id="moyenne-avis">-</span> / 5
+                            </div>
+                            <p>(<span id="nombre-avis">0</span> avis)</p>
+                        </div>
+                        <a href="#avis-modal-overlay" id="avis-modal-ouvrir">Laisser un commentaire</a>
+
+                        <div class="avis-modal-overlay" id="avis-modal-overlay">
+                            <div class="div-formulaire-avis">
+                                <h4>Ajouter un avis</h4>
+                                <form action="" method="post" id="avis-modal-formulaire">
+                                    <div>
+                                        <fieldset>
+                                            <div class="note-etoile">
+                                                <input type="radio" id="etoile-5" name="note" value="5">
+                                                <label class="demi-droite" for="etoile-5" title="5 étoiles"></label>
+
+                                                <input type="radio" id="etoile-4-5" name="note" value="4.5">
+                                                <label class="demi-gauche" for="etoile-4-5" title="4,5 étoiles"></label>
+
+                                                <input type="radio" id="etoile-4" name="note" value="4">
+                                                <label class="demi-droite" for="etoile-4" title="4 étoiles"></label>
+
+                                                <input type="radio" id="etoile-3-5" name="note" value="3.5">
+                                                <label class="demi-gauche" for="etoile-3-5" title="3,5 étoiles"></label>
+
+                                                <input type="radio" id="etoile-3" name="note" value="3">
+                                                <label class="demi-droite" for="etoile-3" title="3 étoiles"></label>
+
+                                                <input type="radio" id="etoile-2-5" name="note" value="2.5">
+                                                <label class="demi-gauche" for="etoile-2-5" title="2,5 étoiles"></label>
+
+                                                <input type="radio" id="etoile-2" name="note" value="2">
+                                                <label class="demi-droite" for="etoile-2" title="2 étoiles"></label>
+
+                                                <input type="radio" id="etoile-1-5" name="note" value="1.5">
+                                                <label class="demi-gauche" for="etoile-1-5" title="1,5 étoiles"></label>
+
+                                                <input type="radio" id="etoile-1" name="note" value="1">
+                                                <label class="demi-droite" for="etoile-1" title="1 étoile"></label>
+
+                                                <input type="radio" id="etoile-0-5" name="note" value="0.5">
+                                                <label class="demi-gauche" for="etoile-0-5" title="0,5 étoile"></label>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <ul>
+                                        <li class="champ-saisie">
+                                            <label for="message-avis">Parle nous de ta lecture</label>
+                                            <textarea id="message-avis" name="message-avis" rows="8" minlength="10"
+                                                maxlength="1000" placeholder=""></textarea>
+                                        </li>
+                                    </ul>
+                                    <div class="div-button-form">
+                                        <button type="button" id="avis-modal-annuler">Annuler</button>
+                                        <button type="submit">Publier</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="div-infos-colomn">
+                    <h2 class="titre-livre"></h2>
+                    <h3>Résumé</h3>
+                    <p class="summary"></p>
+                    <h3>A propos</h3>
+                    <div class="infos-row ">
+                        <p>Auteur : </p>
+                        <p class="valeur-auteur"></p>
+                    </div>
+                    <div class="infos-row">
+                        <p>Date de publication : </p>
+                        <p class="valeur-date"></p>
+                    </div>
+                    <div class="infos-row">
+                        <p>Genre : </p>
+                        <p class="valeur-genre"></p>
+                    </div>
+                    <div class="infos-row">
+                        <p>Nombre de page : </p>
+                        <p class="valeur-pages"></p>
+                    </div>
+                    <div class="infos-row">
+                        <p>Série : </p>
+                        <p class="valeur-serie"></p>
+                    </div>
+                    <div class="div-avis">
+                        <h3>Avis des lecteurs</h3>
+                        <div class="liste-avis">
+                            <article class="article-avis">
+                                <div class="entete-avis">
+                                    <img class="img-avatar" src="" alt="">
+                                    <p class="valeur-pseudo"></p>
+                                </div>
+                                <p class="commentaire-avis-livre"></p>
+                                <div class="etoiles-avis"></div>
+                                <time datetime="2026-07"></time>
+                            </article>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <footer>
+        <div class="div-footer container">
+            <div>
+                <div class="contact-us">
+                    <h4>CONTACTEZ-NOUS</h4>
+                    <p>livrio@gmail.com</p>
+                    <p>04 56 78 90 34</p>
+                </div>
+                <div class="logo-rs-colomn">
+                    <div class="lien-reseaux-sociaux-row">
+                        <a href=""><img class="icon" src="../assets/facebook.svg" alt="icône-facebook"></a>
+                        <a href=""><img class="icon" src="../assets/instagram.svg" alt="icône-instagram"></a>
+                        <a href=""><img class="icon" src="../assets/x.svg" alt="icône-x"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subscribe">
+                <h4>ABONNEZ-VOUS</h4>
+                <p>Recevez chaque moi la newsletter de Livrio</p>
+                <form action="#" method="post">
+                    <label for="email">Entrer votre adresse mail</label>
+                    <input type="text" id="email">
+                    <button type="submit">Envoyer</button>
+                </form>
+            </div>
+
+        </div>
+        <div class="div-signature">
+            <p>Stage - septembre 2026</p>
+        </div>
+    </footer>
+    <script src="../js/squelette.js"></script>
+    <script src="../js/donnees.js"></script>
+    <script src="../js/stockage.js"></script>
+    <script src="../js/avis.js"></script>
+    <script src="../js/livre.js"></script>
+</body>
+
+</html>

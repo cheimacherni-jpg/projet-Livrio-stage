@@ -1,0 +1,295 @@
+
+//// FONCTION VALIDER AVIS (pour le formulaire)////
+const LONGUEUR_MIN = 10;
+const LONGUEUR_MAX = 1000;
+
+function refus(message) {
+    return { valide: false, message };
+}
+
+function validerAvis(texte) {
+    let contenu = "";
+    if (typeof texte === "string") {
+        contenu = texte.trim();
+    }
+
+    const taille = contenu.length;
+
+    if (taille === 0) {
+        return refus("Saisie vide : parlez de votre lecture");
+    }
+
+    if (taille < LONGUEUR_MIN) {
+        return refus("Saisie trop courte : elle doit contenir au moins " + LONGUEUR_MIN + " caractères");
+    }
+
+    if (taille > LONGUEUR_MAX) {
+        return refus("Saisie trop longue : elle ne doit pas dépasser " + LONGUEUR_MAX + " caractères");
+    }
+
+    return { valide: true, message: "Saisie correcte" };
+}
+
+const MOIS_FR_LISTE = [
+    "janvier", "février", "mars", "avril", "mai", "juin",
+    "juillet", "août", "septembre", "octobre", "novembre", "décembre"
+];
+
+function dateActuelleEnFrancais() {
+    const aujourdHui = new Date();
+    const jour = aujourdHui.getDate();
+    const mois = MOIS_FR_LISTE[aujourdHui.getMonth()];
+    const annee = aujourdHui.getFullYear();
+    return `${jour} ${mois} ${annee}`;
+}
+
+//// FONCTION ENREGISTRER AVIS ////
+async function enregistrerAvis(idLivre, commentaire, note) {
+    let avis = [];
+    try {
+        avis = JSON.parse(localStorage.getItem("avis")) || [];
+    } catch (erreur) {
+        console.warn("Clé 'avis' illisible :", erreur.message);
+    }
+
+    const livres = await chargerLivres();
+    const livre = livres ? livres.find(l => l.id === idLivre) : null;
+
+    avis.push({
+        pseudo: "Chema-mystery",
+        idUtilisateur: "user-456",
+        idLivre: idLivre,
+        commentaire: commentaire,
+        note: Number(note),
+        datePublicationCommentaire: dateActuelleEnFrancais(),
+        photoProfil: "../assets/pp1.jpg",
+        couverture: livre ? livre.couvertureLivre : ""
+    });
+
+    localStorage.setItem("avis", JSON.stringify(avis));
+}
+
+
+// MENU/LISTE DEROULANTE //
+function initEtagere(root) {
+    const trigger = root.querySelector('.shelf__trigger');
+    const label = root.querySelector('.shelf__label');
+    const menu = root.querySelector('.shelf__menu');
+    const items = [...menu.querySelectorAll('.shelf__item')];
+    const radios = items.filter(i => i.getAttribute('role') === 'menuitemradio');
+
+    const isOpen = () => !menu.hidden;
+
+    function open(focusIndex = null) {
+        menu.hidden = false;
+        trigger.setAttribute('aria-expanded', 'true');
+        if (focusIndex !== null) {
+            const start = radios.findIndex(r => r.getAttribute('aria-checked') === 'true');
+            items[focusIndex === 'selected' ? Math.max(start, 0) : focusIndex].focus();
+        }
+    }
+
+    function close(returnFocus = false) {
+        menu.hidden = true;
+        trigger.setAttribute('aria-expanded', 'false');
+        if (returnFocus) trigger.focus();
+    }
+
+    function choose(item) {
+        if (item.dataset.action) {
+            root.dispatchEvent(new CustomEvent('shelf-action', { bubbles: true, detail: item.dataset.action }));
+        } else {
+            radios.forEach(r => r.setAttribute('aria-checked', String(r === item)));
+            label.textContent = item.textContent.trim();
+            root.dispatchEvent(new CustomEvent('shelf-change', { bubbles: true, detail: item.dataset.value }));
+        }
+        close(true);
+    }
+
+    trigger.addEventListener('click', () => (isOpen() ? close() : open()));
+
+    trigger.addEventListener('keydown', e => {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            open(e.key === 'ArrowUp' ? items.length - 1 : 'selected');
+        }
+    });
+
+    menu.addEventListener('click', e => {
+        const item = e.target.closest('.shelf__item');
+        if (item) choose(item);
+    });
+
+    menu.addEventListener('keydown', e => {
+        const i = items.indexOf(document.activeElement);
+        switch (e.key) {
+            case 'ArrowDown': e.preventDefault(); items[(i + 1) % items.length].focus(); break;
+            case 'ArrowUp': e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); break;
+            case 'Home': e.preventDefault(); items[0].focus(); break;
+            case 'End': e.preventDefault(); items[items.length - 1].focus(); break;
+            case 'Enter':
+            case ' ': e.preventDefault(); if (i >= 0) choose(items[i]); break;
+            case 'Escape': e.preventDefault(); close(true); break;
+            case 'Tab': close(); break;
+        }
+    });
+
+    // Fermer au clic à l'extérieur
+    document.addEventListener('click', e => {
+        if (isOpen() && !root.contains(e.target)) close();
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.shelf').forEach(initEtagere);
+});
+
+function calculerMoyenneAvis(avisLivre) {
+    if (avisLivre.length === 0) {
+        return 0;
+    }
+    const somme = avisLivre.reduce(
+        (total, unAvis) => total + unAvis.note,
+        0
+    );
+    return somme / avisLivre.length;
+}
+
+
+// ---- Pop-up ---- //
+document.addEventListener('DOMContentLoaded', function () {
+
+    const overlay = document.getElementById('avis-modal-overlay');
+    const boutonAnnuler = document.getElementById('avis-modal-annuler');
+    const formulaire = document.getElementById('avis-modal-formulaire');
+
+    const etagere = document.getElementById('etagere');
+
+    const parametresURL = new URLSearchParams(window.location.search);
+
+    const idLivre = parametresURL.get('id');
+
+    function afficherMoyenne(tousLesAvis) {
+        const avisLivre = tousLesAvis.filter(function (unAvis) {
+            return String(unAvis.idLivre) === String(idLivre)
+                && typeof unAvis.note === 'number';
+        });
+
+        const moyenne = calculerMoyenneAvis(avisLivre);
+
+        document.getElementById('moyenne-avis').textContent =
+            avisLivre.length > 0 ? moyenne.toFixed(1).replace('.', ',') : '-';
+        document.getElementById('nombre-avis').textContent = avisLivre.length;
+
+        const conteneurEtoiles = document.querySelector('.etoiles-moyenne');
+        remplirEtoiles(conteneurEtoiles, moyenne);
+    }
+
+    // ---- Fonction pour AFFICHER la pop-up ----
+    function ouvrirPopup() {
+        overlay.classList.add('visible');
+
+        document.getElementById('message-avis').focus();
+    }
+
+    // ---- Fonction pour CACHER la pop-up ----
+    function fermerPopup() {
+        overlay.classList.remove('visible');
+
+        etagere.querySelector('.shelf__trigger').focus();
+    }
+
+    document.addEventListener('keydown', function (evenement) {
+        if (evenement.key === 'Escape' && overlay.classList.contains('visible')) {
+            fermerPopup();
+        }
+    });
+
+    if (etagere) {
+        etagere.addEventListener('shelf-change', function (evenement) {
+            enregistrerStatut(idLivre, evenement.detail);
+
+            if (['lu', 'abandonne', 'en-cours'].includes(evenement.detail)) {
+                ouvrirPopup();
+            }
+        });
+    }
+
+    function afficherStatutExistant() {
+        if (!etagere || idLivre === null) return;
+
+        const statuts = lireStatuts();
+        const statutExistant = statuts[idLivre];
+        if (!statutExistant) return;
+
+        const label = etagere.querySelector('.shelf__label');
+        const items = [...etagere.querySelectorAll('.shelf__item')];
+        const itemCorrespondant = items.find(i => i.dataset.value === statutExistant);
+
+        if (itemCorrespondant) {
+            items.forEach(i => {
+                if (i.getAttribute('role') === 'menuitemradio') {
+                    i.setAttribute('aria-checked', String(i === itemCorrespondant));
+                }
+            });
+            label.textContent = itemCorrespondant.textContent.trim();
+        }
+    }
+
+    afficherStatutExistant();
+
+    boutonAnnuler.addEventListener('click', fermerPopup);
+
+    overlay.addEventListener('click', function (evenement) {
+        if (evenement.target === overlay) {
+            fermerPopup();
+        }
+    });
+
+    const lienAvis = document.getElementById('avis-modal-ouvrir');
+    if (lienAvis) {
+        lienAvis.addEventListener('click', function (evenement) {
+            evenement.preventDefault();
+            ouvrirPopup();
+        });
+    }
+
+    formulaire.addEventListener('submit', async function (evenement) {
+        evenement.preventDefault();
+
+        const champMessage = document.getElementById('message-avis');
+        const message = champMessage.value;
+
+        const noteCochee = formulaire.querySelector('input[name="note"]:checked');
+        const note = noteCochee ? Number(noteCochee.value) : null;
+
+        const resultat = validerAvis(message);
+        afficherErreurAvis(champMessage, resultat);
+
+        if (!resultat.valide) {
+            return;
+        }
+
+        // 1. On sauvegarde le nouvel avis dans le localStorage
+        await enregistrerAvis(idLivre, message, note);
+
+        const tousLesAvis = await chargerTousLesAvis();
+
+        afficherAvisDuLivre(tousLesAvis, idLivre);
+        afficherMoyenne(tousLesAvis);
+
+        // 3. On vide le formulaire pour la prochaine fois
+        formulaire.reset();
+
+        fermerPopup();
+    });
+
+    if (idLivre === null) {
+        afficherErreur();
+    } else {
+        chargerTousLesAvis().then(function (tousLesAvis) {
+            afficherAvisDuLivre(tousLesAvis, idLivre);
+            afficherMoyenne(tousLesAvis);
+        });
+    }
+});
